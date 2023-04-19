@@ -1,13 +1,13 @@
 import socket
 
 host = socket.gethostname()
-
-port = 9999
+port = 10001
 
 clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 clientsocket.connect((host, port))
 
-data = "Hello, server!"
+# data = "Hello, server!"
+data = input("give temat: ")
 clientsocket.send(data.encode('utf-8'))
 
 

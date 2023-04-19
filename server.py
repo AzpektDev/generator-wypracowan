@@ -1,10 +1,11 @@
 import socket
-import random
+
+import openai
+
+openai.api_key = "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"
 
 host = socket.gethostname()
-
-port = 9999
-
+port = 10001
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serversocket.bind((host, port))
@@ -20,10 +21,13 @@ while True:
     data = clientsocket.recv(1024).decode('utf-8')
     print(f"Data received from client: {data}")
 
-    with open("received_from_client.txt", "w") as f:
-        f.write(data)
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=data,
+        max_tokens=150,
+        temperature=0.7
+    )
 
-    random_num = random.randint(1, 1000)
-    clientsocket.send(str(random_num).encode('utf-8'))
+    clientsocket.send(response['choices'][0]['text'].encode('utf-8'))
 
     clientsocket.close()
