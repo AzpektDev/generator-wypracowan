@@ -1,14 +1,23 @@
 import socket
-from config import CONNECTION
 
-query = input("temat: ")
-print(query)
+host = socket.gethostname()
 
-b = query.encode('utf-8')
+port = 9999
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.connect(CONNECTION)
+clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+clientsocket.connect((host, port))
 
-    s.sendall(b) 
+data = "Hello, server!"
+clientsocket.send(data.encode('utf-8'))
 
-print('Data sent to server')
+
+response = clientsocket.recv(1024).decode('utf-8')
+print(f"Response from server: {response}")
+
+
+with open("server_response.txt", "w") as f:
+    f.write(response)
+
+
+clientsocket.close()
+
