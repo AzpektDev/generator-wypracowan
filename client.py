@@ -1,5 +1,6 @@
 import socket
 from colorama import Fore, Back, Style
+import time
 from getpass import getpass
 from datetime import datetime
 from config import connection
@@ -16,8 +17,11 @@ topic = input(Fore.BLUE + "Give temat rozprawki/wypracowania: " + Style.RESET_AL
 data = topic + "\r\n\r\n-EndStream-"
 clientsocket.send(data.encode('utf-8'))
 
+print("Waiting for response from server... (openai servers rn: 🔥🔥🔥)")
+
 response = b''
 while b'\r\n\r\n-EndStream-' not in response:
+    notcomplete = False
     response += clientsocket.recv(1024)
 response = response.decode('utf-8')
 response = response.replace("\r\n\r\n-EndStream-", "")
