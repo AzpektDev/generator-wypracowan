@@ -1,14 +1,15 @@
 import socket
 import openai
 from colorama import Fore, Back, Style
+from config import connection
 
 openai.api_key = "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"
 
-host = socket.gethostname()
-port = 10004
+# host = socket.gethostname()
+# port = 10004
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serversocket.bind((host, port))
+serversocket.bind(connection)
 
 serversocket.listen(1)
 

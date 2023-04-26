@@ -2,15 +2,16 @@ import socket
 from colorama import Fore, Back, Style
 from getpass import getpass
 from datetime import datetime
+from config import connection
 
 user = input(Fore.BLUE + "login: " + Style.RESET_ALL)
 password = getpass(Fore.BLUE + "password: " + Style.RESET_ALL)
 
-host = socket.gethostname()
-port = 10004
+# host = socket.gethostname()
+# port = 10004
 
 clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-clientsocket.connect((host, port))
+clientsocket.connect(connection)
 
 # data = "Hello, server!"
 data = input(Fore.BLUE + "Give temat rozprawki/wypracowania: " + Style.RESET_ALL)
