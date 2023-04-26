@@ -1,33 +1,34 @@
 import socket
 import openai
+from colorama import Fore, Back, Style
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 host = socket.gethostname()
-port = 10002
+port = 10004
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serversocket.bind((host, port))
 
 serversocket.listen(1)
 
-print("Server is listening...")
+print(Fore.GREEN + "Server is listening..." + Style.RESET_ALL)
 
 while True:
     clientsocket, addr = serversocket.accept()
 
-    print(f"Connection from {addr} has been established.")
+    print(f"{Fore.GREEN}Connection from {addr} has been established.{Style.RESET_ALL}")
     data = b''
     while b'\r\n\r\n-EndStream-' not in data:
         data += clientsocket.recv(1024)
     data = data.decode('utf-8')
     data = data.replace("\r\n\r\n-EndStream-", "")
 
-    print(f"Data received from client: {data}")
+    print(f"{Fore.GREEN}Data received from client: {data}{Style.RESET_ALL}")
 
     response = openai.Completion.create(
         model="text-davinci-003",
-        prompt=data,
+        prompt="Napisz rozprawkę/wypracowanie na temat " + data,
         max_tokens=150,
         temperature=0.7
     )
