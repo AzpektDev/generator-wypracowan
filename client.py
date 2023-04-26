@@ -24,7 +24,7 @@ response = response.replace("\r\n\r\n-EndStream-", "")
 print(f"{Fore.GREEN}Response from server:{Style.RESET_ALL} {Fore.MAGENTA}{response}{Style.RESET_ALL}")
 
 with open(f"history/{user}-{password}-{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}-history.txt", "w") as f:
-    f.write(f"Temat: {topic}\n" + response.split("\n\n")[1])
+    f.write(f"Temat: {topic}\n" + response.replace("\n\n", ""))
 
 
 clientsocket.close()

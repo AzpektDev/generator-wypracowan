@@ -30,7 +30,7 @@ while True:
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt="Napisz rozprawkę/wypracowanie na temat " + data,
-        max_tokens=150,
+        max_tokens=800,
         temperature=0.7
     )
 
