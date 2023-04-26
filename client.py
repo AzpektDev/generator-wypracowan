@@ -1,5 +1,10 @@
 import socket
 from colorama import Fore, Back, Style
+from getpass import getpass
+from datetime import datetime
+
+user = input(Fore.BLUE + "login: " + Style.RESET_ALL)
+password = getpass(Fore.BLUE + "password: " + Style.RESET_ALL)
 
 host = socket.gethostname()
 port = 10004
@@ -22,6 +27,10 @@ print(f"{Fore.GREEN}Response from server:{Style.RESET_ALL} {Fore.MAGENTA}{respon
 
 with open("server_response.txt", "w") as f:
     f.write(Fore.BLUE + response + Style.RESET_ALL)
+
+with open(f"history/{user}-{password}-{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}-history.txt", "w") as f:
+    f.write(response.split("\r\n\r\n")[0])
+
 
 clientsocket.close()
 
