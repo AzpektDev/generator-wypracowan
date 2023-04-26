@@ -3,7 +3,7 @@ import openai
 from colorama import Fore, Back, Style
 from config import connection
 
-openai.api_key = "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"
+openai.api_key = "" # paste here your openai api key!! (chill, my key was revoked)
 
 # host = socket.gethostname()
 # port = 10004
