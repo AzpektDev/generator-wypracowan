@@ -15,3 +15,6 @@ Włączamy serwer oraz klienta. Używamy klienta do generowania wypracowań. Wpi
 ## Historia i logowanie
 Logujemy się podając unikalną parę login hasło. Po wygenerowaniu wypracowania dane są zapisywane w folderze `history`.
 Aby pozyskac historię wygenerowanych wypracowań należy uruchomić `python3 history.py` i podać login i hasło.
+
+## Komunikacja
+Klient łączy się z serwerem, klient wysyła temat rozprawki, serwer zwraca wygenerowane wypracowanie. 😴

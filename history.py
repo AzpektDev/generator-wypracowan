@@ -7,7 +7,7 @@ password = getpass(Fore.BLUE + "password: " + Style.RESET_ALL)
 
 files = glob.glob(f"history/{user}-{password}-*-history.txt")
 
-for index, file in enumerate(files):
+for index, file in enumerate(files): # enumerate zwraca index i wartosc w liscie
     with open(file, "r") as f:
         content = f.read()
         topic = content.split("\n")[0].split(": ")[1]
